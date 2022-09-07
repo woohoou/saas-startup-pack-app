@@ -1,0 +1,11 @@
+mutation UpsertDevice($device: devices_insert_input!) {
+  insert_devices_one(
+    object: $device
+    on_conflict: {
+      constraint: devices_user_exponent_push_token_constraint
+      update_columns: [updated_at, deleted_at]
+    }
+  ) {
+    id
+  }
+}

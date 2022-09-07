@@ -1,0 +1,13 @@
+#import "./userFragment.graphql"
+
+query me {
+  me {
+    id
+    username
+    name
+    email
+    currentPasswordRequired: current_password_required
+    phoneNumber: phone_number
+    avatar
+  }
+}
