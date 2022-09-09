@@ -5,12 +5,10 @@ import {
   GOOGLE_EXPO_CLIENT_ID,
   GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID,
-  STEAM_CLIENT_ID,
-  STEAM_OPEN_ID_URL,
   TWITCH_CLIENT_ID,
 } from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { makeRedirectUri, ResponseType, useAuthRequest, useAutoDiscovery } from 'expo-auth-session';
+import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
@@ -282,17 +280,18 @@ export const AuthProvider: React.FC = ({ children }) => {
     twitchDiscovery
   );
 
-  const steamDiscovery = useAutoDiscovery(STEAM_OPEN_ID_URL);
-  const redirectUri = makeRedirectUri();
-  const [, steamResponse, steamSignIn] = useAuthRequest(
-    {
-      clientId: STEAM_CLIENT_ID,
-      redirectUri,
-      usePKCE: false,
-      scopes: ['openid', 'profile'],
-    },
-    steamDiscovery
-  );
+  // const steamDiscovery = useAutoDiscovery(STEAM_OPEN_ID_URL);
+  // const redirectUri = makeRedirectUri();
+  // const [, steamResponse, steamSignIn] = useAuthRequest(
+  //   {
+  //     clientId: STEAM_CLIENT_ID,
+  //     redirectUri,
+  //     usePKCE: false,
+  //     scopes: ['openid', 'profile'],
+  //   },
+  //   steamDiscovery
+  // );
+  let steamResponse: any, steamSignIn: any;
 
   const githubDiscovery = {
     authorizationEndpoint: 'https://github.com/login/oauth/authorize',
